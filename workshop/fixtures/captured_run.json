@@ -1,0 +1,147 @@
+{
+  "_note": "ENGINEERED FIXTURE. The failing 62% churn claim is a realistic citation failure deliberately authored to demonstrate the verification gate catching it \u2014 it is NOT a live model drift. Honest stage narrative: 'I engineered a realistic failure.' Replayed byte-for-byte in DEMO_MODE. `make stage` accepts provenance 'engineered' or 'live'.",
+  "captured_at": "2026-09-08",
+  "model": "claude-sonnet-4-6",
+  "usage": {
+    "input_tokens": 14208,
+    "output_tokens": 2640,
+    "est_cost_usd": 0.11,
+    "elapsed_s": 19.0
+  },
+  "phases": {
+    "read": {
+      "rows": 182,
+      "days": 90,
+      "by_channel": {
+        "app_review": 71,
+        "support_ticket": 64,
+        "nps_verbatim": 47
+      },
+      "elapsed_s": 0.3
+    },
+    "cluster": {
+      "elapsed_s": 6.1,
+      "themes": [
+        {
+          "rank": 1,
+          "name": "Bad substitutions",
+          "count": 68,
+          "severity": "HIGH",
+          "weight": 3,
+          "verbatims": [
+            "Ordered parsley, got cilantro. Third time this month.",
+            "Kids' snack swapped for one with nuts. Allergy. This is a safety issue."
+          ]
+        },
+        {
+          "rank": 2,
+          "name": "Late delivery",
+          "count": 39,
+          "severity": "MED",
+          "weight": 2,
+          "verbatims": [
+            "Delivery window was 6-8pm, arrived 9:40."
+          ]
+        },
+        {
+          "rank": 3,
+          "name": "Item quality",
+          "count": 27,
+          "severity": "MED",
+          "weight": 2,
+          "verbatims": [
+            "Meat expiry was tomorrow. Who picked this?"
+          ]
+        },
+        {
+          "rank": 4,
+          "name": "Price / fees",
+          "count": 31,
+          "severity": "LOW",
+          "weight": 1,
+          "verbatims": [
+            "Service fee went up again with no notice."
+          ]
+        }
+      ]
+    },
+    "ground": {
+      "elapsed_s": 8.4,
+      "searches": [
+        {
+          "query": "grocery substitution customer churn benchmark",
+          "hits": 3
+        },
+        {
+          "query": "instafresh substitution approval feature",
+          "hits": 2
+        }
+      ]
+    },
+    "draft": {
+      "elapsed_s": 4.2
+    }
+  },
+  "brief": {
+    "title": "FreshCart: Smart Substitutions",
+    "recommendation": "Build smart substitutions next quarter. Let customers pre-approve a backup per item or mark it do-not-substitute.",
+    "problem": "Bad substitutions are the number one driver of negative feedback. Customers receive items they did not choose, at prices they did not agree to, and in several cases with allergy and dietary risk.",
+    "claims": [
+      {
+        "id": "c1",
+        "kind": "internal",
+        "text": "Substitution complaints account for 68 of 182 feedback items in the last 90 days.",
+        "source": "data/freshcart_feedback.csv",
+        "recompute": {
+          "column": "theme_truth",
+          "value": "substitution",
+          "expect": 68,
+          "total": 182
+        }
+      },
+      {
+        "id": "c2",
+        "kind": "web",
+        "text": "41% of shoppers reduced order frequency after poor substitutions.",
+        "source": "provision-2025",
+        "quote": "41% of online grocery shoppers said poor item substitutions led them to reduce their order frequency over the past year."
+      },
+      {
+        "id": "c4",
+        "kind": "web",
+        "text": "InstaFresh lets customers pre-approve a substitute per item.",
+        "source": "instafresh-help-2025",
+        "quote": "Customers can pre-approve a preferred substitute for any item before checkout."
+      },
+      {
+        "id": "c3",
+        "kind": "web",
+        "text": "62% of FreshCart users churn after a single bad substitution.",
+        "source": "provision-2025",
+        "quote": "The report found that 62% of users churn after a bad substitution experience."
+      }
+    ],
+    "options": [
+      {
+        "name": "Do nothing",
+        "note": "Complaint volume continues; allergy incidents remain an open liability."
+      },
+      {
+        "name": "Shopper texts before every swap",
+        "note": "Cheap, but slows fulfilment and does not scale past a few swaps per order."
+      },
+      {
+        "name": "Smart substitutions (recommended)",
+        "note": "Per-item pre-approval or do-not-substitute. Matches the competitor baseline. Removes the guesswork from the shopper."
+      }
+    ],
+    "ask": "Two engineers and one designer for one quarter. Ship per-item substitution preferences at checkout, with do-not-substitute as a first-class option."
+  },
+  "provenance": {
+    "kind": "engineered",
+    "captured_at": "2026-09-08",
+    "model": null,
+    "attempts": 0,
+    "note": "The failing 62% churn claim is a realistic failure deliberately engineered to demonstrate the gate, not a live model drift. Replayed deterministically in DEMO_MODE."
+  }
+}

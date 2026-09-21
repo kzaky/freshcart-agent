@@ -1,0 +1,13 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Generated demo artifacts (never committed; make clean regenerates)
+out/
+workshop/out/
+
+# OS
+.DS_Store
