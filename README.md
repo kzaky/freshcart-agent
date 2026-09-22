@@ -39,6 +39,12 @@ Why engineered and not live: as shipped, `make capture` cannot produce a genuine
 
 The system prompt requires every web claim to carry the exact sentence it came from. `gate.py` re-fetches the cited source from the same cache and checks that sentence is present, plus every number in the claim. Real claims pass because their sentence is there. The 62% claim fails because its sentence is not, and "62%" and "churn" appear nowhere in the source. The gate is ordinary code, not an LLM judge.
 
+## This gate is one eval, not the whole story
+
+`gate.py` is the smallest honest version of the idea: one deterministic check, run once, against one brief. A real system keeps the habit and grows it — a **set** of test cases instead of one, a **suite** of checks instead of one (completeness, retrieval quality, scope, a regression set), run **offline in CI and online in production**, with a **model-as-judge used carefully** only where plain code cannot reach. And it is honest about the ceiling: a groundedness gate catches a fabricated citation, not a real source bent to the wrong conclusion — so it stays a suite, and a human still signs.
+
+The full map — the kinds of evals, when to trust a model to judge, the honest LLM gotchas, and the evals you'd run on this exact analyst — is at **[khaledzaky.com/trust/evals](https://khaledzaky.com/trust/evals)**.
+
 ## Layout
 
 ```
