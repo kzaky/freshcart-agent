@@ -68,7 +68,7 @@ def cmd_deck():
 def cmd_teach():
     R.banner("TEACHING SLIDES", "same generator as the FreshCart deck")
     p = build_teaching(ROOT / "fixtures" / "teaching_slides.json")
-    R.done(f"3 slides → {p.relative_to(ROOT)}")
+    R.done(f"teaching slides → {p.relative_to(ROOT)}")
 
 def cmd_capture():
     from .capture import capture
