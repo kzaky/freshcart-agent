@@ -6,31 +6,31 @@
       "title": "Build an AI Analyst You Can Trust",
       "body": "Khaled Zaky",
       "qr": "Everything from tonight, including a no-code track",
-      "notes": "Up while people find seats. At 6:15, switch to the brief.html tab for the cold open. Don't introduce yourself first."
+      "notes": "Doors: leave this up while people sit. At 6:15, Cmd+2 for the brief. Say nothing for three seconds. \"One of the facts on this page is made up. Tonight is about which person you want to be: the one who sends that, or the one who catches it.\" Then Cmd+1."
     },
     {
       "section": "Opening",
       "title": "I'm Khaled.",
       "body": "I lead AI Governance and Evaluations Platform Engineering at RBC Borealis.\nBefore that, I built and led the bank's agentic AI platform. Before that, I shipped passkeys and MFA for AWS sign-in.\nI think governance belongs inside the system from day one. Tonight you'll watch me build it in.",
-      "notes": "Coming back from the cold open on the brief. Mention you teach product management and AI here at BrainStation. Keep it under a minute: the point is why you care about checks, not your CV."
+      "notes": "Under a minute. RBC Borealis, the agentic platform, passkeys and MFA at AWS, and you teach PM and AI here at BrainStation. Land it on: governance belongs inside the system from day one, and tonight you'll watch me build it in."
     },
     {
       "section": "Opening",
       "title": "An AI can draft it in seconds. Would you sign it?",
       "body": "Anyone here can get an AI to write a brief or a deck in under a minute.\nPutting your name on it still takes as long as it always did, and a wrong number lands on whoever forwarded it.\nThe people who get handed real work are the ones whose AI output can be checked.",
-      "notes": "You might be a PM, an eng lead or an exec who wants an assistant you can hand real work to. The move is the same for all of you: you're hiring a teammate and deciding whether to trust it."
+      "notes": "Cast the room: PM, eng lead, or an exec who wants an assistant to hand real work to. Same move for all of you: you're hiring a teammate and deciding whether to trust it."
     },
     {
       "section": "Tonight",
       "title": "Tonight",
       "map": 0,
-      "notes": "First look at the map. Walk it in fifteen seconds: we watch it build, we catch it, you try it, and you leave with what to keep. The red tags are where I go live."
+      "notes": "Fifteen seconds. Watch it build, catch it, your turn, what to keep. The red tags are where I go live."
     },
     {
       "section": "01 · Watch it build",
       "title": "Do we fix substitutions next quarter?",
       "body": "You order parsley. We're out, so we send cilantro, and customers hate it.\nWe have 90 days of complaints in one file and a decision to make.\nSomeone would normally spend half a day reading all of it. Let's watch a machine do it instead.",
-      "notes": "Say the job. The next slide is the LIVE marker: that's where you switch."
+      "notes": "Parsley, cilantro, customers hate it. Ninety days of complaints and a decision. \"Normally somebody spends half a day reading this. Let's watch a machine do it.\" Then → to LIVE."
     },
     {
       "live": true,
@@ -47,25 +47,25 @@
           "frame": "backup/brief_clean.html"
         }
       ],
-      "notes": "Switch now: Ctrl+→, make demo, then Ctrl+← and Cmd+2 for the brief. Come back to the slides with Cmd+1 and press → to carry on. Demo dead? Stay here and press ↓ for the output, ↓ again for the brief."
+      "notes": "Ctrl+→, tab 1, make demo. It prints in about six seconds: let it finish, scroll up, walk the phases (182 complaints, the themes, it chose to search, the brief). \"The run I captured for tonight took nineteen seconds and cost eleven cents.\" Ctrl+←, Cmd+2, scroll the brief, don't point at 62%. Bait: \"You could have pasted this into a chatbot. You're right.\" Cmd+1, then →. Dead? ↓ output, ↓ brief."
     },
     {
       "section": "01 · Find the lie",
       "title": "Each of these has a source. One of them is invented.",
       "body": "• Substitution complaints account for 68 of 182 feedback items in the last 90 days.\n• 41% of shoppers reduced order frequency after poor substitutions.\n• InstaFresh lets customers pre-approve a substitute per item.\n• 62% of FreshCart users churn after a single bad substitution.",
-      "notes": "Sixty seconds. Take two or three guesses out loud and don't confirm any of them. Then: I do this for a living and I read straight past it too. Reading harder won't fix it, so let's build something that checks every line."
+      "notes": "Sixty seconds. Take two or three guesses out loud and confirm none of them. \"Catching this is literally my job, and I read straight past it too. So let's build something that checks every line.\""
     },
     {
       "section": "Tonight",
       "title": "Tonight",
       "map": 2,
-      "notes": "Two seconds. Now we catch it. Part 2 is live in Claude Code."
+      "notes": "Two seconds. \"Part two. Now we catch it, live.\""
     },
     {
       "section": "02 · Catch it",
       "title": "Every fact carries the exact sentence it came from.",
       "body": "Then something goes back to the source and checks that the sentence is really there.",
-      "notes": "Say it slowly. It's the most valuable sentence of the night. Next slide is LIVE."
+      "notes": "Say it slowly, it's the most valuable sentence of the night: every fact carries the exact sentence it came from, and something goes back and checks it's really there. Then → to LIVE."
     },
     {
       "live": true,
@@ -82,7 +82,7 @@
           "frame": "backup/brief_flagged.html"
         }
       ],
-      "notes": "Switch now: Ctrl+→, tab 2, paste LIVE_GATE_PROMPT.md. Stall past 90 seconds: \\cp ../freshcart_agent/gate.py freshcart_agent/gate.py. Tab 1: make gate, hold the RED four seconds, Ctrl+←, then →. Dead? ↓ shows the RED run, ↓ again the flagged brief."
+      "notes": "Ctrl+→, tab 2, Cmd+V the prompt (on the clipboard from pre-flight), Enter. Keep talking: \"I described what I want checked in English, and it's writing the code.\" If it offers to run the gate, say no. Stall past 90s: tab 1, \\cp ../freshcart_agent/gate.py freshcart_agent/gate.py. Tab 1, make gate. Pass, pass, pass. Hold the RED four seconds. Ctrl+←, then →. Dead? ↓ RED run, ↓ flagged brief."
     },
     {
       "section": "02 · Catch it",
@@ -99,7 +99,7 @@
           "text": "41% of shoppers reduced order frequency after poor substitutions."
         }
       ],
-      "notes": "Back from the RED run. The report never says 62 and never says anyone left. Then the disclosure: this is a replay of a run I set up, and I planted this claim so it fails the same way every time; the gate didn't know, it ran for real. Empathy line: you put that number in a deck, your VP repeats it, and three months later the honest answer is nowhere. Next slide is LIVE."
+      "notes": "\"The report never says sixty-two, and it never says anyone left. The real number is forty-one percent, and it's about ordering less often.\" Then the disclosure: \"Full disclosure: this is a replay of a run I set up, and I planted this claim so it fails the same way every time. The gate didn't know. It ran for real, just now.\" Empathy, slowly: your VP repeats it, and three months later the honest answer is nowhere. \"I didn't catch it. The check did.\" Then → to LIVE."
     },
     {
       "live": true,
@@ -116,39 +116,39 @@
           "frame": "backup/evidence_pack.html"
         }
       ],
-      "notes": "Switch now: Ctrl+→, make fix, make gate, then Ctrl+←, Cmd+3, Cmd+R for the evidence pack. Cmd+1 back here, then →. Dead? ↓ for GREEN, ↓ again for the evidence pack."
+      "notes": "Ctrl+→, tab 1, make fix, then make gate. GREEN. \"Same agent. Now it's earned the decision.\" Ctrl+←, Cmd+3, Cmd+R: the evidence pack. \"It left a receipt, and that receipt is what separates a weekend project from something a bank will run.\" Cmd+1, then →. Dead? ↓ GREEN, ↓ evidence pack."
     },
     {
       "section": "Tonight",
       "title": "Tonight",
       "map": 3,
-      "notes": "Coming back from the evidence pack. Now it's their turn, on their phones."
+      "notes": "Two seconds. \"Part three is yours.\""
     },
     {
       "section": "03 · Your turn",
       "title": "Now you catch it.",
       "body": "It works on a phone. If the wifi is slow, wherever you get to is fine.",
       "qr": "Tap “Try the check in 2 minutes”",
-      "notes": "Give them 30 seconds to scan. The QR is also on the handout. The button sits right under the rule, near the top of the page."
+      "notes": "Thirty seconds to scan. \"Tap Try the check in 2 minutes, right under the rule near the top.\" The QR is on the handout too. Wherever they get to is fine."
     },
     {
       "section": "03 · Your turn",
       "title": "Four steps, one chat",
       "body": "• Open claude.ai and start a new chat. It's free and there's nothing to install.\n• Copy the contract from the site and paste it as your first message.\n• Paste the sample brief, which has one fabricated number hiding in it.\n• Paste the verifier, then watch what your Claude does with each claim.",
       "qr": "Lost? Scan again",
-      "notes": "About seven minutes across the four steps. Walk the room. If the wifi collapses: screens down, everyone watch mine, and run it on your own Claude."
+      "notes": "About seven minutes. Walk the room. Wifi dies: \"Screens down, everyone watch mine,\" Cmd+5 for your own claude.ai tab and run the three pastes."
     },
     {
       "section": "03 · Your turn",
       "title": "Hands up if your Claude passed everything.",
       "body": "Same prompt and same brief, and this room got three verdicts: caught it, couldn't reach the source, or made a sentence up.\nA chat can't hold the source, so the check that decides has to be code that does.",
-      "notes": "Hands up if it passed everything, then hands up if it failed everything. Let them look around. This is why the gate I built is sixty lines of Python and not a second AI."
+      "notes": "Hands up if it passed everything. Then hands up if it failed everything. Three verdicts from one prompt: caught it, couldn't reach the source, or made a sentence up. A chat can't hold the source, so the check that decides is code, about sixty lines of Python and not a second AI."
     },
     {
       "section": "Tonight",
       "title": "Tonight",
       "map": 4,
-      "notes": "Last part. No more live demos from here, just what to keep."
+      "notes": "Two seconds. \"Last part. No more live demos, just what to keep.\""
     },
     {
       "section": "04 · What to keep",
@@ -167,7 +167,7 @@
           "text": "You can sign without re-reading every number, because you're trusting a check you can audit."
         }
       ],
-      "notes": "Sixty seconds each, at most. Leave the evidence_pack.html tab up while you talk if you prefer it."
+      "notes": "Sixty seconds each at most. PM: the evidence pack keeps your brief alive in review. Eng lead: it's a test on every commit. Exec: you sign a check you can audit, not an AI you have to trust."
     },
     {
       "section": "04 · What to keep",
@@ -186,37 +186,37 @@
           "text": "Governance. Can you prove it to someone who wasn't in the room?"
         }
       ],
-      "notes": "Learn to say all three. You'll be in rooms with all three audiences."
+      "notes": "Forty-five seconds. Engineers say eval, risk says guardrail, regulators say governance. Same code, three rooms, so learn to say all three."
     },
     {
       "section": "04 · What to keep",
       "title": "The four numbers you already saw",
       "body": "• Groundedness: 3 of 4 on the first run, 3 of 3 after the fix\n• Completion: all 5 brief sections present\n• Cost: $0.11 for the captured run\n• Latency: 19 seconds for the captured run",
-      "notes": "Point, don't re-explain. Groundedness is the one almost nobody tracks, and it's the one that ends careers."
+      "notes": "Thirty seconds. Point, don't re-explain: they were on screen when the gate passed. Groundedness is the one almost nobody tracks, and the one that ends careers."
     },
     {
       "section": "04 · What to keep",
       "title": "Ask again tomorrow and you get a different answer.",
       "body": "Test regular software once and it stays tested. A model can answer the same question two different ways.\nSo the check runs on every run, and it never comes off.",
-      "notes": "Sixty seconds. Next come the three evals slides. If you're running long, keep only 'What even a perfect gate misses'."
+      "notes": "Forty-five seconds. Same question tomorrow, different answer, so the check runs every time and never comes off. Running long? Skip to 21."
     },
     {
       "section": "04 · Evals",
       "title": "Four ways a brief goes wrong",
       "body": "• Fabrication: a fact with no source at all\n• Drift: a real source, bent to a number it never said (tonight's 62%)\n• Omission: the counter-evidence quietly goes missing\n• Silent regression: a model update breaks what works today",
-      "notes": "These are shapes, and none of them needs a model that's trying to lie. Drift is the dangerous one because it survives a careful read. You can't check for a failure you haven't named."
+      "notes": "\"What I showed you is one check.\" Four shapes, none needing a model that's trying to lie. Drift is tonight's 62%, and the dangerous one because it survives a careful read. You can't check for a failure you haven't named."
     },
     {
       "section": "04 · Evals",
       "title": "Let a model judge, carefully",
       "body": "• It prefers longer answers\n• It likes its own phrasing best\n• It can make the same mistake the writer made\n• Use it to rank and triage, and keep the gate itself in code",
-      "notes": "Where code can't judge (tone, usefulness) a model can, but it has a thumb on the scale. Calibrate it against people first. That's why tonight's gate was sixty lines of Python."
+      "notes": "Where code can't judge tone or usefulness, a model can, carefully: it has a thumb on the scale. Rank and triage with it, calibrate it against people, and keep the gate in code."
     },
     {
       "section": "04 · Evals",
       "title": "What even a perfect gate misses",
       "body": "• A real source bent to the wrong conclusion\n• Counter-evidence nobody cited\n• Bad reasoning built on sound facts\n• So it takes a suite, and a human still signs",
-      "notes": "Slow down here. The gate removes the failure people are worst at, the confident, well-sourced, wrong number, so your judgment goes to the failures only judgment can catch."
+      "notes": "Slow down, even at your pace. The honesty peak. It catches a made-up citation, not a real source bent to the wrong conclusion. So it takes a suite, and a human still signs. The gate removes the failure you're worst at, the confident, well-sourced, wrong number."
     },
     {
       "section": "04 · Evals",
@@ -240,13 +240,13 @@
           "text": "The ground truth. Too slow for every run, so use it to calibrate the others."
         }
       ],
-      "notes": "Forty-five seconds. The evals map goes deeper for the people who build it and the people who buy it."
+      "notes": "One minute. Code, a reference answer, a model as judge, a human. Each fails somewhere different. The full map is the evals link in the chat."
     },
     {
       "section": "04 · What to keep",
       "title": "Four questions before AI output reaches a real decision",
       "body": "• Can every fact name its source?\n• Does something check that source automatically, or only a human on a good day?\n• When the check fails, does it block the document, or warn and get ignored?\n• Could you show someone the receipt six months from now?",
-      "notes": "The only slide they need to write down. It's the one-page checklist on their seat and on the site."
+      "notes": "Two minutes. The only thing they write down, so read them slowly and give them time. It's the checklist on their seat and on the site."
     },
     {
       "section": "04 · What to keep",
@@ -266,7 +266,7 @@
           "text": "The evidence pack, run metrics, a regression set"
         }
       ],
-      "notes": "Thirty seconds. Every module on the site says which of these it implements."
+      "notes": "Thirty seconds. What goes in, what comes out, what proves it. Every module on the site says which ones it implements."
     },
     {
       "section": "04 · What to keep",
@@ -282,13 +282,13 @@
         }
       ],
       "qr": "Both tracks, every prompt",
-      "notes": "Half the room can't rebuild it at home without the no-code track, so say that out loud."
+      "notes": "Thirty seconds. Say it out loud: the no-code track needs no install and no API key, so everyone here can rebuild it."
     },
     {
       "section": "04 · What to keep",
       "title": "These slides came from the same generator as the FreshCart deck.",
       "body": "Same code. I didn't make an exception for myself.\nThe agent read 182 complaints, found the real problem, went and got evidence, wrote the recommendation, built a deck and left a receipt for every claim. The captured run took 19 seconds and cost 11 cents.",
-      "notes": "The encore is cut, so say make deck also turned the approved brief into a five-slide leadership deck. Press ↓ to show it for five seconds, ↑ to hide it.",
+      "notes": "\"The slides I taught with tonight came out of the same generator that turned the approved brief into a leadership deck. Same code.\" Press ↓ to show that deck for five seconds, ↑ to hide it. Then the captured run: 182 complaints, 19 seconds, 11 cents.",
       "fallback": [
         {
           "title": "The leadership deck, from the same generator",
@@ -301,14 +301,14 @@
       "title": "You already knew how to make the trick.",
       "body": "Now you're the person who can be trusted with it.\nEvery fact carries the sentence it came from, and something goes and checks.",
       "qr": "The site, the checklist and the evals map",
-      "notes": "Three links in the chat: the site, the checklist, the evals map. Then: thank you, questions."
+      "notes": "\"You're walking out as the person who can be trusted with it.\" The three links are already in the chat: the site, the checklist, the evals map. \"Thank you. Questions?\""
     },
     {
       "section": "Q&A",
       "title": "Questions",
       "body": "The checklist and the evals map are both linked from the site.",
       "qr": "Everything from tonight",
-      "notes": "Hard stop at 7:20. The likely questions and answers are in the stage script."
+      "notes": "Hard stop at 7:20. Leave the QR up. Likely questions: isn't the checker just another AI, isn't this rigged (you planted it and said so; the captured run is in the repo), what else would you run in production, I can't code."
     }
   ],
   "map": [
