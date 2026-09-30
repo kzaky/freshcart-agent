@@ -1,4 +1,5 @@
 """Two tools. read_feedback reads the CSV. web_search reads the offline cache unless live mode is on."""
+from __future__ import annotations
 import csv, json, os
 from pathlib import Path
 
@@ -7,14 +8,14 @@ CACHE = ROOT / "fixtures" / "search_cache.json"
 
 def read_feedback(path: str) -> dict:
     p = ROOT / path
-    rows = list(csv.DictReader(open(p, newline="")))
+    rows = list(csv.DictReader(open(p, newline="", encoding="utf-8")))
     by_channel = {}
     for r in rows:
         by_channel[r["channel"]] = by_channel.get(r["channel"], 0) + 1
     return {"rows": len(rows), "by_channel": by_channel, "items": rows}
 
 def _cache() -> dict:
-    return json.load(open(CACHE))
+    return json.load(open(CACHE, encoding="utf-8"))
 
 def web_search(query: str, offline: bool = True) -> list[dict]:
     """Offline: return cached sources for the query. Live: not wired in this demo; falls back to cache."""
@@ -27,6 +28,6 @@ def fetch_source(source_id: str) -> dict | None:
     return _cache()["sources"].get(source_id)
 
 def recompute_internal(spec: dict) -> tuple[int, int]:
-    rows = list(csv.DictReader(open(ROOT / "data" / "freshcart_feedback.csv", newline="")))
+    rows = list(csv.DictReader(open(ROOT / "data" / "freshcart_feedback.csv", newline="", encoding="utf-8")))
     n = sum(1 for r in rows if r[spec["column"]] == spec["value"])
     return n, len(rows)

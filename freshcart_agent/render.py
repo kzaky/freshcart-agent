@@ -1,4 +1,5 @@
 """Terminal rendering (rich) and rendered artifacts (HTML/markdown) for the audience."""
+from __future__ import annotations
 import json, time, html
 from pathlib import Path
 from rich.console import Console
@@ -87,8 +88,8 @@ def write_brief_html(brief: dict, usage: dict, path: Path = OUT / "brief.html", 
 <h2>Evidence</h2><ul>{''.join(ev)}</ul>
 <h2>Options</h2><ul>{opts}</ul>
 <h2>Ask</h2><p>{html.escape(brief['ask'])}</p>"""
-    path.write_text(doc)
-    (OUT / "brief.md").write_text(brief_text(brief))
+    path.write_text(doc, encoding="utf-8")
+    (OUT / "brief.md").write_text(brief_text(brief), encoding="utf-8")
     return path
 
 def print_gate(results, verdict_only=False):
@@ -124,13 +125,13 @@ def write_evidence_pack(results, brief: dict, usage: dict, m: dict):
     rows = []
     for r in results:
         rows.append({"claim_id": r.claim_id, "claim": r.text, "source": r.source, "passed": r.passed, "reasons": r.reasons, "note": r.note})
-    (OUT / "evidence_pack.json").write_text(json.dumps({"brief": brief["title"], "usage": usage, "metrics": m, "claims": rows}, indent=2))
+    (OUT / "evidence_pack.json").write_text(json.dumps({"brief": brief["title"], "usage": usage, "metrics": m, "claims": rows}, indent=2), encoding="utf-8")
     md = ["# Evidence pack", f"Brief: {brief['title']}", "", "| Claim | Source | Result | Note |", "|---|---|---|---|"]
     for r in rows:
         res = "PASS" if r["passed"] else "FAIL: " + "; ".join(r["reasons"])
         md.append(f"| {r['claim']} | {r['source']} | {res} | {r['note']} |")
     md += ["", "## Operator metrics"] + [f"- {k}: {v}" for k, v in m.items()]
-    (OUT / "evidence_pack.md").write_text("\n".join(md))
+    (OUT / "evidence_pack.md").write_text("\n".join(md), encoding="utf-8")
     trs = "".join(f"<tr><td>{html.escape(r['claim'])}</td><td>{html.escape(r['source'])}</td><td class='{'pass' if r['passed'] else 'fail'}'>{'PASS' if r['passed'] else 'FAIL'}</td><td>{html.escape('; '.join(r['reasons']) or r['note'])}</td></tr>" for r in rows)
     mets = "".join(f"<li><strong>{k.replace('_',' ').title()}</strong>: {v}</li>" for k, v in m.items())
-    (OUT / "evidence_pack.html").write_text(f"<!doctype html><meta charset='utf-8'><title>Evidence pack</title><style>{CSS}</style><h1>Evidence pack</h1><div class='meta'>{html.escape(brief['title'])}</div><table><tr><th>Claim</th><th>Source</th><th>Result</th><th>Note</th></tr>{trs}</table><h2>Operator metrics</h2><ul>{mets}</ul>")
+    (OUT / "evidence_pack.html").write_text(f"<!doctype html><meta charset='utf-8'><title>Evidence pack</title><style>{CSS}</style><h1>Evidence pack</h1><div class='meta'>{html.escape(brief['title'])}</div><table><tr><th>Claim</th><th>Source</th><th>Result</th><th>Note</th></tr>{trs}</table><h2>Operator metrics</h2><ul>{mets}</ul>", encoding="utf-8")

@@ -1,0 +1,23 @@
+╔══════════════════════════════════════════════════════════════════════════════════════════╗
+║  VERIFICATION GATE  checking 4 cited claims                                              ║
+╚══════════════════════════════════════════════════════════════════════════════════════════╝
+
+  ✓ PASS  Substitution complaints account for 68 of 182 feedback items in the last 90 days.
+          recomputed from data/freshcart_feedback.csv
+
+  ✓ PASS  41% of shoppers reduced order frequency after poor substitutions.
+          quote found in Provision Retail Analytics
+
+  ✓ PASS  InstaFresh lets customers pre-approve a substitute per item.
+          quote found in InstaFresh Help Center
+
+  ✗ FAIL  62% of FreshCart users churn after a single bad substitution.
+          cited: provision-2025
+          → quoted sentence not found in source
+          → token "62%" not found in source
+          nearest figure in source: 41% (reduce their order frequency)
+
+╔══════════════════════════════════════════════════════════════════════════════════════════╗
+║  ✗  GATE FAILED  ·  1 of 4 claims unsupported                                            ║
+║  brief blocked. not ready to ship.                                                       ║
+╚══════════════════════════════════════════════════════════════════════════════════════════╝

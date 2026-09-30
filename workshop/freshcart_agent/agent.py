@@ -21,7 +21,7 @@ def _pace(seconds: float):
     time.sleep(min(seconds, 2.5))
 
 def run_demo() -> tuple[dict, dict]:
-    cap = json.load(open(CAPTURED))
+    cap = json.load(open(CAPTURED, encoding="utf-8"))
     ph, usage = cap["phases"], cap["usage"]
     R.banner("FRESHCART ANALYST", "agent run  ·  DEMO MODE (offline)")
 
@@ -53,7 +53,7 @@ def run_demo() -> tuple[dict, dict]:
     R.print_brief(cap["brief"])
     path = R.write_brief_html(cap["brief"], usage)
     R.line(f"rendered → {path.relative_to(ROOT)}", "dim")
-    (ROOT / "out" / "brief.json").write_text(json.dumps({"brief": cap["brief"], "usage": usage}, indent=2))
+    (ROOT / "out" / "brief.json").write_text(json.dumps({"brief": cap["brief"], "usage": usage}, indent=2), encoding="utf-8")
     return cap["brief"], usage
 
 def run_live() -> tuple[dict, dict]:
@@ -67,12 +67,12 @@ def run_live() -> tuple[dict, dict]:
     else:
         client = anthropic.AnthropicBedrock(aws_region=os.environ.get("AWS_REGION", "us-east-1"))
         model = os.environ.get("BEDROCK_MODEL", "us.anthropic.claude-sonnet-4-6")
-    system = (PROMPTS / "system.md").read_text()
+    system = (PROMPTS / "system.md").read_text(encoding="utf-8")
     tools = [
         {"name": "read_feedback", "description": "Read the customer feedback CSV.", "input_schema": {"type": "object", "properties": {"path": {"type": "string"}}, "required": ["path"]}},
         {"name": "web_search", "description": "Search for external evidence. Returns sources with full text.", "input_schema": {"type": "object", "properties": {"query": {"type": "string"}}, "required": ["query"]}},
     ]
-    goal = "\n\n".join((PROMPTS / f).read_text() for f in ("01_cluster.md", "02_ground.md", "03_synthesize.md"))
+    goal = "\n\n".join((PROMPTS / f).read_text(encoding="utf-8") for f in ("01_cluster.md", "02_ground.md", "03_synthesize.md"))
     msgs = [{"role": "user", "content": goal}]
     R.banner("FRESHCART ANALYST", "agent run  ·  LIVE")
     t0 = time.time(); usage = {"input_tokens": 0, "output_tokens": 0}
@@ -96,7 +96,7 @@ def run_live() -> tuple[dict, dict]:
     usage["elapsed_s"] = round(time.time() - t0, 1)
     usage["est_cost_usd"] = round(usage["input_tokens"] * 3e-6 + usage["output_tokens"] * 15e-6, 2)
     brief = json.loads(text[text.find("{"): text.rfind("}") + 1])
-    (ROOT / "out" / "brief.json").write_text(json.dumps({"brief": brief, "usage": usage}, indent=2))
+    (ROOT / "out" / "brief.json").write_text(json.dumps({"brief": brief, "usage": usage}, indent=2), encoding="utf-8")
     R.print_brief(brief); R.write_brief_html(brief, usage)
     return brief, usage
 

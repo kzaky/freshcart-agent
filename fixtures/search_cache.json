@@ -3,13 +3,13 @@
   "queries": {
     "grocery substitution customer churn benchmark": [
       "provision-2025",
-      "grocerydive-2025",
+      "lastmile-2025",
       "instafresh-help-2025"
     ],
     "instafresh substitution approval feature": [
       "instafresh-help-2025",
       "grocerly-blog-2025",
-      "grocerydive-2025"
+      "lastmile-2025"
     ],
     "grocery app substitution preferences competitors": [
       "instafresh-help-2025",
@@ -29,10 +29,10 @@
       "url": "https://help.instafresh.example/articles/substitution-preferences",
       "text": "Substitution preferences. Customers can pre-approve a preferred substitute for any item before checkout. If an item is unavailable, your shopper will use your pre-approved substitute, or refund the item if you selected 'Do not substitute'. You can change these preferences for each item in your cart."
     },
-    "grocerydive-2025": {
+    "lastmile-2025": {
       "title": "Grocery delivery logistics brief",
-      "publisher": "Grocery Dive",
-      "url": "https://grocerydive.example/briefs/delivery-logistics-2025",
+      "publisher": "Last Mile Ledger",
+      "url": "https://lastmileledger.example/briefs/delivery-logistics-2025",
       "text": "Grocery delivery logistics brief, 2025. Last-mile delivery windows continue to tighten as retailers compete on speed. Dense urban routes average 22 stops per driver shift. Cold-chain handling for frozen and dairy remains the leading operational complaint from drivers."
     },
     "grocerly-blog-2025": {

@@ -12,7 +12,7 @@ def _load_brief():
     p = OUT / "brief.json"
     if not p.exists():
         R.line("no brief yet. run: make demo", "red"); sys.exit(1)
-    d = json.load(open(p)); return d["brief"], d["usage"]
+    d = json.load(open(p, encoding="utf-8")); return d["brief"], d["usage"]
 
 def cmd_demo():
     run()
@@ -28,14 +28,14 @@ def cmd_gate():
     first = OUT / "gate_first_run.json"
     if all(r.passed for r in results):
         if first.exists():
-            f = json.load(open(first))
+            f = json.load(open(first, encoding="utf-8"))
             m["groundedness"] = f"{f['passed']} of {f['total']} on first run · 1 caught and removed · {len(results)} of {len(results)} now"
         R.write_evidence_pack(results, brief, usage, m)
         R.metrics_panel(m)
         R.line("rendered → out/evidence_pack.html", "dim")
     else:
         flagged = {r.claim_id for r in results if not r.passed}
-        first.write_text(json.dumps({"passed": len(results)-len(flagged), "total": len(results)}))
+        first.write_text(json.dumps({"passed": len(results)-len(flagged), "total": len(results)}), encoding="utf-8")
         R.write_brief_html(brief, usage, flagged=flagged)
         R.line("rendered → out/brief.html (failed claims highlighted)", "dim")
         sys.exit(2)
@@ -50,7 +50,7 @@ def cmd_fix():
     kept = [c for c in brief["claims"] if c["id"] not in failed]
     dropped = [c["text"] for c in brief["claims"] if c["id"] in failed]
     brief["claims"] = kept
-    (OUT / "brief.json").write_text(json.dumps({"brief": brief, "usage": usage}, indent=2))
+    (OUT / "brief.json").write_text(json.dumps({"brief": brief, "usage": usage}, indent=2), encoding="utf-8")
     R.banner("FIX", f"removed {len(dropped)} unsupported claim(s)")
     for d in dropped: R.line(f"[red]−[/] {d}")
     R.write_brief_html(brief, usage)
@@ -67,8 +67,10 @@ def cmd_deck():
 
 def cmd_teach():
     R.banner("TEACHING SLIDES", "same generator as the FreshCart deck")
-    p = build_teaching(ROOT / "fixtures" / "teaching_slides.json")
+    web = os.environ.get("WEB_OUT")
+    p = build_teaching(ROOT / "fixtures" / "teaching_slides.json", Path(web).expanduser() if web else None)
     R.done(f"teaching slides → {p.relative_to(ROOT)}")
+    if web: R.done(f"web copy → {web}")
 
 def cmd_capture():
     from .capture import capture
@@ -95,7 +97,7 @@ def cmd_preflight():
     ok("fail reasons include 'quoted sentence not found'", failed and any("quoted sentence" in x for x in failed[0].reasons))
     ok("nearest-figure hint present (41%)", failed and "41%" in failed[0].note)
     ok("rendered brief written", (OUT/"brief.html").exists())
-    prov = json.load(open(ROOT/"fixtures"/"captured_run.json")).get("provenance", {}).get("kind")
+    prov = json.load(open(ROOT/"fixtures"/"captured_run.json", encoding="utf-8")).get("provenance", {}).get("kind")
     if os.environ.get("STAGE") == "1":
         ok("fixture provenance is honest — 'live' or 'engineered' (STAGE=1 requires it)", prov in ("live", "engineered"))
     else:

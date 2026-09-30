@@ -1,0 +1,31 @@
+╔══════════════════════════════════════════════════════════════════════════════════════════╗
+║  FRESHCART ANALYST  agent run  ·  DEMO MODE (offline)                                    ║
+╚══════════════════════════════════════════════════════════════════════════════════════════╝
+
+▶ READING FEEDBACK
+  data/freshcart_feedback.csv  ·  182 rows  ·  90 days
+  app reviews 71 · support tickets 64 · NPS 47
+  ✓ loaded in 0.3s
+
+▶ CLUSTERING
+         Themes, ranked by count × severity
+╭───┬───────────────────┬───────┬──────────┬───────╮
+│ # │ Theme             │ Count │ Severity │ Score │
+├───┼───────────────────┼───────┼──────────┼───────┤
+│ 1 │ Bad substitutions │    68 │   HIGH   │   204 │
+│ 2 │ Late delivery     │    39 │   MED    │    78 │
+│ 3 │ Item quality      │    27 │   MED    │    54 │
+│ 4 │ Price / fees      │    31 │   LOW    │    31 │
+╰───┴───────────────────┴───────┴──────────┴───────╯
+  ✓ 4 themes in 6.1s
+
+▶ GROUNDING  (top theme: Bad substitutions)
+  → web_search("grocery substitution customer churn benchmark")
+  ✓ 3 sources
+  → web_search("instafresh substitution approval feature")
+  ✓ 3 sources
+  ✓ grounded in 8.4s
+
+▶ DRAFTING BRIEF
+  ✓ brief drafted in 4.2s
+  tokens 14,208 in · 2,640 out   est. cost $0.11   elapsed 19.0s

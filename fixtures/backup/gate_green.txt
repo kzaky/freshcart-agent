@@ -1,0 +1,26 @@
+╔══════════════════════════════════════════════════════════════════════════════════════════╗
+║  VERIFICATION GATE  checking 3 cited claims                                              ║
+╚══════════════════════════════════════════════════════════════════════════════════════════╝
+
+  ✓ PASS  Substitution complaints account for 68 of 182 feedback items in the last 90 days.
+          recomputed from data/freshcart_feedback.csv
+
+  ✓ PASS  41% of shoppers reduced order frequency after poor substitutions.
+          quote found in Provision Retail Analytics
+
+  ✓ PASS  InstaFresh lets customers pre-approve a substitute per item.
+          quote found in InstaFresh Help Center
+
+╔══════════════════════════════════════════════════════════════════════════════════════════╗
+║  ✓  GATE PASSED  ·  3 of 3 claims supported                                              ║
+║  evidence_pack.md written · brief cleared to ship                                        ║
+╚══════════════════════════════════════════════════════════════════════════════════════════╝
+╭──────────────────────────────────── Operator metrics ────────────────────────────────────╮
+│                                                                                          │
+│    Groundedness     3 of 4 on first run · 1 caught and removed · 3 of 3 now              │
+│    Completion       all 5 brief sections present                                         │
+│    Cost per run     $0.11                                                                │
+│    Latency          19.0s                                                                │
+│                                                                                          │
+╰──────────────────────────────────────────────────────────────────────────────────────────╯
+

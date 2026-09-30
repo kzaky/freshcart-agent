@@ -1,19 +1,4 @@
-"""Turn an approved brief into a deck. One decision per slide. Recommendation first.
-
-Self-contained, full-screen, keyboard-navigable HTML deck (dark, presenter-grade).
-Composition and fit are tuned per a design review: centered layout (never left-heavy),
-JS scale-to-fit so arbitrary content always fills exactly one screen (never scrolls),
-vh-led type, projector-safe contrast, editorial lists, staggered entrance.
-Speaker notes are NEVER on the shared slide — they open in a separate window (press S).
-The SAME renderer makes the teaching slides and the FreshCart deck (keeps the reveal true).
-"""
-from __future__ import annotations
-
-import html, json, re
-from pathlib import Path
-from .render import OUT
-
-DECK_CSS = """
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>FreshCart: Smart Substitutions · leadership deck</title><meta name='robots' content='noindex'><style>
 :root{
   --font:ui-sans-serif,system-ui,-apple-system,"SF Pro Display","Segoe UI Variable Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --bg:#080b12; --ink:#f4f7fb; --body:#dfe6f1; --dim:#9aa6bb;
@@ -117,7 +102,7 @@ h1.title{
 .map li.done{opacity:.35} .map li.done .n::after{content:" ✓";color:#6ee7b7}
 .map li.now{opacity:1;border-color:rgba(56,189,248,.45);background:rgba(56,189,248,.08);box-shadow:0 0 40px rgba(56,189,248,.12)}
 .map.all li{opacity:1}
-.slide.live > .inner .title{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-weight:700;letter-spacing:-.01em;max-width:none}
+.slide.live .title{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-weight:700;letter-spacing:-.01em;max-width:none}
 .livetag{display:inline-flex;align-items:center;gap:.55em;font-weight:800;letter-spacing:.22em;font-size:clamp(.9rem,calc(1.6vh + .3vw),1.4rem);color:#fda4af}
 .livetag::before{content:"";width:.75em;height:.75em;border-radius:50%;background:#f43f5e;box-shadow:0 0 18px #f43f5e;animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.35}}
@@ -129,9 +114,7 @@ h1.title{
 .fb .eyebrow{color:#fbbf24} .fb .eyebrow::after{background:linear-gradient(90deg,transparent,#f59e0b,transparent)}
 .slide.backup .eyebrow{color:#fbbf24}
 .slide.backup .eyebrow::after{background:linear-gradient(90deg,transparent,#f59e0b,transparent)}
-"""
-
-DECK_JS = """
+</style></head><body><section class="slide"><div class="ghost" aria-hidden="true">01</div><div class="inner"><div class="eyebrow">FreshCart: Smart Substitutions · leadership deck &nbsp;·&nbsp; 01 / 05</div><h1 class="title">The recommendation</h1><div class="body"><p>Build smart substitutions next quarter. Let customers pre-approve a backup per item or mark it do-not-substitute.</p></div></div></section><section class="slide"><div class="ghost" aria-hidden="true">02</div><div class="inner"><div class="eyebrow">FreshCart: Smart Substitutions · leadership deck &nbsp;·&nbsp; 02 / 05</div><h1 class="title">The problem</h1><div class="body"><p>Bad substitutions are the number one driver of negative feedback. Customers receive items they did not choose, at prices they did not agree to, and in several cases with allergy and dietary risk.</p></div></div></section><section class="slide"><div class="ghost" aria-hidden="true">03</div><div class="inner"><div class="eyebrow">FreshCart: Smart Substitutions · leadership deck &nbsp;·&nbsp; 03 / 05</div><h1 class="title">The evidence</h1><div class="body"><ul><li>Substitution complaints account for <span class='num'>68</span> of <span class='num'>182</span> feedback items in the last <span class='num'>90</span> days.</li><li><span class='num'>41%</span> of shoppers reduced order frequency after poor substitutions.</li><li>InstaFresh lets customers pre-approve a substitute per item.</li></ul></div></div></section><section class="slide"><div class="ghost" aria-hidden="true">04</div><div class="inner"><div class="eyebrow">FreshCart: Smart Substitutions · leadership deck &nbsp;·&nbsp; 04 / 05</div><h1 class="title">The options</h1><div class="body"><ul><li><strong>Do nothing:</strong> Complaint volume continues; allergy incidents remain an open liability.</li><li><strong>Shopper texts before every swap:</strong> Cheap, but slows fulfilment and does not scale past a few swaps per order.</li><li><strong>Smart substitutions (recommended):</strong> Per-item pre-approval or do-not-substitute. Matches the competitor baseline. Removes the guesswork from the shopper.</li></ul></div></div></section><section class="slide"><div class="ghost" aria-hidden="true">05</div><div class="inner"><div class="eyebrow">FreshCart: Smart Substitutions · leadership deck &nbsp;·&nbsp; 05 / 05</div><h1 class="title">The ask</h1><div class="body"><p>Two engineers and one designer for one quarter. Ship per-item substitution preferences at checkout, with do-not-substitute as a first-class option.</p></div></div></section><div class='progress'><span id='barin'></span></div><div class='brandmark'>FreshCart: Smart Substitutions</div><div class='count' id='cnt'></div><div class='hint' id='hint'>&rarr; / space &nbsp;·&nbsp; F fullscreen &nbsp;·&nbsp; S speaker notes</div><script>window.__NOTES__=["Lead with the decision. Everything after this slide is support.","Say it in the customer's words. One sentence of consequence.","Every line here passed the verification gate. Say that out loud.","Show you considered do-nothing. It's the credibility slide.","Specific people, specific quarter, specific outcome. Then stop talking."];window.__TITLES__=["The recommendation","The problem","The evidence","The options","The ask"];window.__NUMS__=[1, 2, 3, 4, 5];</script><script>
 (function(){
   var slides=[].slice.call(document.querySelectorAll('.slide'));
   var barin=document.getElementById('barin'), cnt=document.getElementById('cnt'), hint=document.getElementById('hint');
@@ -201,10 +184,10 @@ DECK_JS = """
     else if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){prev();e.preventDefault();}
     else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
     else if(e.key==='f'||e.key==='F'){ fullscreen(); }
-    else if((e.key==='s'||e.key==='S')&&!window.__NONOTES__){ openNotes(); }
+    else if(e.key==='s'||e.key==='S'){ openNotes(); }
   }
   document.addEventListener('keydown',onKey);
-  if(!window.__NOCLICK__) document.addEventListener('click',function(e){ if(e.clientX < window.innerWidth*0.28){prev();} else {next();} });
+  document.addEventListener('click',function(e){ if(e.clientX < window.innerWidth*0.28){prev();} else {next();} });
   window.addEventListener('resize',refit);
   if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(refit); }
   function openNotes(){
@@ -239,176 +222,4 @@ DECK_JS = """
   window.addEventListener('hashchange',fromHash);
   if(hint){ setTimeout(function(){hint.classList.add('hide');},4500); }
 })();
-"""
-
-_NUM = re.compile(r"(\$?\d[\d.,]*%?)")
-
-
-def _inline(s: str, head_max: int = 24) -> str:
-    s = html.escape(s, quote=False)
-    if ":" in s and len(s.split(":", 1)[0]) < head_max and not s.startswith("http"):
-        head, tail = s.split(":", 1)
-        s = f"<strong>{head}:</strong>{tail}"
-    return _NUM.sub(r"<span class='num'>\1</span>", s)
-
-
-def _render_body(body: str) -> str:
-    lines = [l for l in body.split("\n") if l.strip()]
-    bullets = [l for l in lines if l.lstrip().startswith(("•", "-"))]
-    if bullets and len(bullets) == len(lines):
-        texts = [l.lstrip("•- ").strip() for l in lines]
-        # A list where every item is "Label: text" bolds every label, however long (e.g. the options slide).
-        head_max = 48 if all(":" in t and len(t.split(":", 1)[0]) < 48 for t in texts) else 24
-        items = "".join(f"<li>{_inline(t, head_max)}</li>" for t in texts)
-        return f"<ul>{items}</ul>"
-    return "".join(f"<p>{_inline(l.strip())}</p>" for l in lines)
-
-
-def _term(text: str) -> str:
-    out = []
-    for line in html.escape(text.rstrip("\n")).split("\n"):
-        if "PASS" in line or "✓" in line:
-            line = f"<span class='ok'>{line}</span>"
-        elif "FAIL" in line or "✗" in line or "not found" in line:
-            line = f"<span class='bad'>{line}</span>"
-        out.append(line)
-    return f"<pre class='term'>{chr(10).join(out)}</pre>"
-
-
-def _snapshot(f: dict, assets: Path) -> str:
-    if f.get("term"):
-        return _term((assets / f["term"]).read_text(encoding="utf-8"))
-    doc = html.escape((assets / f["frame"]).read_text(encoding="utf-8"), quote=True)
-    return f'<div class="frame"><iframe srcdoc="{doc}" tabindex="-1" loading="lazy"></iframe></div>'
-
-
-def _slide_html(s: dict, num: int | None, n: int, deck_title: str, assets: Path | None,
-                parts_map: list | None = None, web: bool = False) -> str:
-    """One slide. Optional blocks, in order: body, map, cols, term, frame, qr, cue.
-
-    A "live" slide marks a switch to the terminal. It isn't numbered, and its
-    "fallback" snapshots stay hidden until the presenter presses the down arrow.
-    """
-    backup = s.get("backup", False)
-    live = s.get("live", False)
-    label = s.get("section") or deck_title
-    count = "live" if live else f"{num:02d} / {n:02d}"
-    parts = []
-    if s.get("body"):
-        parts.append(f'<div class="body">{_render_body(s["body"])}</div>')
-    if s.get("map") is not None and parts_map:
-        cur = s["map"]
-        rows = []
-        for k, m in enumerate(parts_map, 1):
-            state = "now" if k == cur else ("done" if k < cur else "")
-            tag = f'<span class="t{" live" if m.get("tag") == "live" else ""}">{html.escape(m["tag"])}</span>' if m.get("tag") else "<span></span>"
-            rows.append(f'<li class="{state}"><span class="n">{k:02d}</span>'
-                        f'<span class="l">{html.escape(m["label"])}<span class="d">{html.escape(m.get("desc", ""))}</span></span>{tag}</li>')
-        parts.append(f'<ol class="map{" all" if cur == 0 else ""}">{"".join(rows)}</ol>')
-    if s.get("cols"):
-        cards = "".join(
-            f'<div class="col {c.get("tone", "plain")}"><div class="lab">{html.escape(c["label"])}</div>'
-            f'<div class="txt">{_inline(c["text"])}</div></div>' for c in s["cols"])
-        parts.append(f'<div class="cols" style="--n:{3 if len(s["cols"]) == 3 else 2}">{cards}</div>')
-    if s.get("term") and assets:
-        parts.append(_term((assets / s["term"]).read_text(encoding="utf-8")))
-    if s.get("frame") and assets:
-        doc = html.escape((assets / s["frame"]).read_text(encoding="utf-8"), quote=True)
-        parts.append(f'<div class="frame"><iframe srcdoc="{doc}" tabindex="-1" loading="lazy"></iframe></div>')
-    if s.get("qr") and assets and (assets / "qr-trust.svg").exists():
-        svg = (assets / "qr-trust.svg").read_text(encoding="utf-8")
-        parts.append(f'<div class="qr"><div class="code">{svg}</div>'
-                     f'<div class="url">khaledzaky.com/trust<small>{html.escape(s["qr"] if isinstance(s["qr"], str) else "scan to follow along")}</small></div></div>')
-    if s.get("cue"):
-        parts.append(f'<div class="cue">{html.escape(s["cue"])}</div>')
-    wide = " wide" if (s.get("cols") or s.get("term") or s.get("frame") or s.get("map") is not None) else ""
-    fbs = ""
-    if s.get("fallback") and assets and not web:
-        m = len(s["fallback"])
-        fbs = "".join(
-            f'<div class="fb"><div class="fbin"><div class="eyebrow">Fallback &nbsp;·&nbsp; {k} / {m}</div>'
-            f'<h1 class="title">{html.escape(f["title"])}</h1>{_snapshot(f, assets)}</div></div>'
-            for k, f in enumerate(s["fallback"], 1))
-    head = '<div class="livetag">LIVE</div>' if live else f'<div class="eyebrow">{html.escape(label)} &nbsp;·&nbsp; {count}</div>'
-    return (
-        f'<section class="slide{" backup" if backup else ""}{" live" if live else ""}">'
-        f'<div class="ghost" aria-hidden="true">{"●" if live else f"{num:02d}"}</div>'
-        f'<div class="inner{wide}">'
-        f'{head}'
-        f'<h1 class="title">{html.escape(s["title"])}</h1>'
-        f'{"".join(parts)}'
-        f'</div>{fbs}</section>'
-    )
-
-
-def _write(title: str, slides: list[dict], out: Path, assets: Path | None = None, web: bool = False,
-           parts_map: list | None = None, brand: str | None = None, stage: bool = False) -> Path:
-    """Render slides to <out>.html (and <out>.md unless web). Live slides (and their fallbacks) never reach the web copy."""
-    if web:
-        slides = [s for s in slides if not s.get("live")]
-    nums, k = [], 0
-    for s in slides:
-        k += 0 if s.get("live") else 1
-        nums.append(None if s.get("live") else k)
-    n = k
-    out.parent.mkdir(parents=True, exist_ok=True)
-
-    if not web:
-        md = [f"# {title}", ""]
-        for s, num in zip(slides, nums):
-            md += [f"## {'Live' if num is None else f'Slide {num}'}: {s['title']}", ""]
-            if s.get("body"):
-                md += [s["body"], ""]
-            if s.get("cols"):
-                md += [f"- **{c['label']}**: {c['text']}" for c in s["cols"]] + [""]
-            md += [f"> Speaker notes: {s.get('notes', '')}", ""]
-        out.with_suffix(".md").write_text("\n".join(md), encoding="utf-8")
-
-    sections = [_slide_html(s, num, n, title, assets, parts_map, web) for s, num in zip(slides, nums)]
-    labels_js = json.dumps([num or 0 for num in nums])
-    # The web copy is public, so it carries no speaker notes. The stage copy ignores
-    # clicks: a click to refocus the browser after the terminal shouldn't move the deck.
-    notes_js = [json.dumps("" if web else s.get("notes", "")) for s in slides]
-    flags = ("window.__NONOTES__=true;" if web else "") + ("window.__NOCLICK__=true;" if stage else "")
-    hint = ("&rarr; / space &nbsp;·&nbsp; F fullscreen" if web else
-            "&rarr; / space" if stage else "&rarr; / space &nbsp;·&nbsp; F fullscreen &nbsp;·&nbsp; S speaker notes")
-    titles_js = [json.dumps(s["title"]) for s in slides]
-    icon = "<link rel='icon' type='image/png' href='/favicon.png'>" if web else ""
-    doc = (
-        "<!doctype html><html lang='en'><head><meta charset='utf-8'>"
-        "<meta name='viewport' content='width=device-width,initial-scale=1'>"
-        f"<title>{html.escape(title)}</title><meta name='robots' content='noindex'>{icon}"
-        f"<style>{DECK_CSS}</style></head><body>"
-        f"{''.join(sections)}"
-        "<div class='progress'><span id='barin'></span></div>"
-        f"<div class='brandmark'>{html.escape(brand or title)}</div>"
-        "<div class='count' id='cnt'></div>"
-        f"<div class='hint' id='hint'>{hint}</div>"
-        f"<script>{flags}window.__NOTES__=[{','.join(notes_js)}];window.__TITLES__=[{','.join(titles_js)}];window.__NUMS__={labels_js};</script>"
-        f"<script>{DECK_JS}</script></body></html>"
-    )
-    out.with_suffix(".html").write_text(doc, encoding="utf-8")
-    return out.with_suffix(".html")
-
-
-def build_teaching(path: Path, web_out: Path | None = None) -> Path:
-    """The teaching slides. With web_out, also write the public copy there (HTML only; no live slides, fallbacks or md)."""
-    d = json.loads(path.read_text(encoding="utf-8"))
-    p = _write(d["title"], d["slides"], OUT / "teaching_slides", assets=path.parent, parts_map=d.get("map"), stage=True)
-    if web_out:
-        _write(d["title"], d["slides"], web_out.with_suffix(""), assets=path.parent, web=True, parts_map=d.get("map"))
-    return p
-
-
-def build(brief: dict) -> Path:
-    OUT.mkdir(exist_ok=True)
-    claims = [c for c in brief["claims"] if not c.get("_flagged")]
-    slides = [
-        ("The recommendation", brief["recommendation"], "Lead with the decision. Everything after this slide is support."),
-        ("The problem", brief["problem"], "Say it in the customer's words. One sentence of consequence."),
-        ("The evidence", "\n".join(f"• {c['text']}" for c in claims), "Every line here passed the verification gate. Say that out loud."),
-        ("The options", "\n".join(f"• {o['name']}: {o['note']}" for o in brief["options"]), "Show you considered do-nothing. It's the credibility slide."),
-        ("The ask", brief["ask"], "Specific people, specific quarter, specific outcome. Then stop talking."),
-    ]
-    return _write(f"{brief['title']} · leadership deck",
-                  [{"title": t, "body": b, "notes": nt} for t, b, nt in slides], OUT / "deck", brand=brief["title"])
+</script></body></html>

@@ -34,7 +34,7 @@ def capture(max_attempts: int = 5) -> int:
         failed = [r for r in results if not r.passed]
         R.line(f"gate: {len(results)-len(failed)} of {len(results)} supported", "dim")
         if len(failed) == 1 and any("quoted sentence" in x for x in failed[0].reasons):
-            old = json.load(open(FIX))
+            old = json.load(open(FIX, encoding="utf-8"))
             new = {
                 "_note": "GENUINE live capture. The failing claim below is the model's own citation drift, not hand-inserted. Replayed byte for byte in DEMO_MODE.",
                 "provenance": {"kind": "live", "captured_at": time.strftime("%Y-%m-%d"), "model": "claude-sonnet-4-6", "attempts": attempt,
@@ -44,7 +44,7 @@ def capture(max_attempts: int = 5) -> int:
             }
             # keep phase timings realistic from the live usage
             new["phases"]["read"]["rows"] = 182
-            FIX.write_text(json.dumps(new, indent=2))
+            FIX.write_text(json.dumps(new, indent=2), encoding="utf-8")
             R.console.print()
             R.done(f"captured a genuine drift on attempt {attempt}:")
             R.line(f"[red]{failed[0].text}[/]")

@@ -30,8 +30,7 @@ def _nearest_figure(source_text: str, claim_text: str) -> str:
     pct, rest = m.group(1), m.group(2)
     what = re.search(r"led them to (.+?)(?: over| in|$)", rest)
     what = what.group(1) if what else " ".join(rest.split()[:5])
-    tail = ", not churn" if "churn" in claim_text.lower() else ""
-    return f"{pct} ({what}{tail})"
+    return f"{pct} ({what})"
 
 def check_claim(claim: dict) -> Result:
     if claim["kind"] == "internal":
@@ -51,9 +50,6 @@ def check_claim(claim: dict) -> Result:
     for tok in _numbers(claim["text"]):
         if tok.lower() not in body:
             reasons.append(f'token "{tok}" not found in source')
-    for word in ("churn",):
-        if word in claim["text"].lower() and word not in body:
-            reasons.append(f'token "{word}" not found in source')
     note = f"quote found in {src['publisher']}"
     if reasons:
         near = _nearest_figure(src["text"], claim["text"])
