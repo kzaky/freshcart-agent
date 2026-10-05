@@ -35,9 +35,24 @@
     {
       "section": "01 · Watch it build",
       "title": "I built this agent with Claude Code.",
-      "body": "Claude in a loop, two tools and one contract. About 40 lines of Python.\nTonight it replays a run I set up, so it fails the same way every time. The check you'll watch me build runs for real.",
+      "body": "Claude writes. Code checks.",
+      "figure": "snippets/agent_flow.svg",
+      "notes": "Twenty-five seconds, walk it top to bottom. \"I built this agent before tonight, with Claude Code. Here's the whole system. Two inputs: the feedback file, and a contract plus three step prompts. In the middle, Claude runs in a loop: it picks a tool, reads the file or searches the web, looks at what came back, and goes again until it decides the brief is done. Out comes a brief where every claim carries its source and the exact sentence it came from. Then the bottom half is plain code, no model: the gate. Claude writes. Code checks.\" Then →."
+    },
+    {
+      "section": "01 · Watch it build",
+      "title": "One level down: the loop",
+      "body": "About 40 lines in freshcart_agent/agent.py. Tonight it replays a run I set up, so it runs the same way every time. The check you'll watch me build runs for real.",
       "term": "snippets/agent_loop.txt",
-      "notes": "Fifteen seconds. Don't read the code. \"I built this agent before tonight, with Claude Code. It's Claude in a loop with two tools, read the file and search the web, plus a contract: no source, no claim. Tonight it replays a run I set up, so it fails the same way every time. The part that runs for real is the check, and you'll watch me build that live. The code and every prompt are in the repo.\" Then → to LIVE."
+      "notes": "Twenty seconds. Point, don't read. \"One level down, this is the loop. Send Claude the contract, the two tools and the conversation so far. If it asks for a tool, run it and hand the result back. If it doesn't, it's done. About forty lines. Tonight it replays a run I set up, so it runs the same way every time and the venue wifi can't break it. The check runs for real, and you'll watch me build it.\" Then →."
+    },
+    {
+      "section": "01 · Watch it build",
+      "title": "The contract is what makes it checkable.",
+      "body": "Every claim names its source and the exact sentence behind it. All of it is on GitHub: github.com/kzaky/freshcart-agent",
+      "term": "snippets/contract.txt",
+      "qr": "The repo, every prompt, and the no-code track",
+      "notes": "Twenty seconds. \"And this is what makes it checkable. The contract says every web claim records the exact sentence it came from, and that sentence will be checked. So every claim comes out like this: the claim, the source, the quote. Hold on to that quote field; it's what we check in part two. All of it is on GitHub: the agent, the prompts, the gate, and the prompt I gave Claude Code to start it. The QR gets you there, and I'll show it again at the end.\" Then → to LIVE."
     },
     {
       "live": true,

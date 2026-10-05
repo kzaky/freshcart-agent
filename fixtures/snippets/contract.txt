@@ -1,0 +1,12 @@
+# prompts/system.md · the contract (excerpt)
+- Every market or factual claim carries a source. No source, no claim.
+- For every web-sourced claim, record the EXACT sentence from the source
+  that supports it, verbatim. This sentence will be checked by a verifier.
+
+# so every claim in the brief comes out like this one
+{
+  "text":   "InstaFresh lets customers pre-approve a substitute per item.",
+  "source": "instafresh-help-2025",
+  "quote":  "Customers can pre-approve a preferred substitute for any item
+             before checkout."
+}

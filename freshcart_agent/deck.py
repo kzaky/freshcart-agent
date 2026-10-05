@@ -105,6 +105,8 @@ h1.title{
 .term{font:500 clamp(.7rem,calc(1.3vh + .25vw),1.08rem)/1.45 ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:#cbd5e1;
   background:#05070c;border:1px solid var(--line);border-radius:14px;padding:1.2em 1.4em;text-align:left;white-space:pre;overflow:hidden;max-width:100%}
 .term .ok{color:#6ee7b7} .term .bad{color:#fb7185} .term .hi{color:var(--ink);font-weight:700}
+.figure{flex:0 0 auto;max-width:100%;margin-top:.2rem}
+.figure svg{display:block;height:min(60vh,700px);width:auto;max-width:100%}
 .frame{width:1200px;height:720px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
 .frame iframe{width:100%;height:100%;border:0;pointer-events:none}
 .map{list-style:none;display:flex;flex-direction:column;gap:clamp(.5rem,1.4vh,1rem);width:min(100%,900px);text-align:left;margin-top:.4rem}
@@ -312,6 +314,8 @@ def _slide_html(s: dict, num: int | None, n: int, deck_title: str, assets: Path 
         parts.append(f'<div class="cols" style="--n:{3 if len(s["cols"]) == 3 else 2}">{cards}</div>')
     if s.get("term") and assets:
         parts.append(_term((assets / s["term"]).read_text(encoding="utf-8")))
+    if s.get("figure") and assets:
+        parts.append(f'<div class="figure">{(assets / s["figure"]).read_text(encoding="utf-8")}</div>')
     if s.get("frame") and assets:
         doc = html.escape((assets / s["frame"]).read_text(encoding="utf-8"), quote=True)
         parts.append(f'<div class="frame"><iframe srcdoc="{doc}" tabindex="-1" loading="lazy"></iframe></div>')
@@ -321,7 +325,7 @@ def _slide_html(s: dict, num: int | None, n: int, deck_title: str, assets: Path 
                      f'<div class="url">khaledzaky.com/trust<small>{html.escape(s["qr"] if isinstance(s["qr"], str) else "scan to follow along")}</small></div></div>')
     if s.get("cue"):
         parts.append(f'<div class="cue">{html.escape(s["cue"])}</div>')
-    wide = " wide" if (s.get("cols") or s.get("term") or s.get("frame") or s.get("map") is not None) else ""
+    wide = " wide" if (s.get("cols") or s.get("term") or s.get("figure") or s.get("frame") or s.get("map") is not None) else ""
     fbs = ""
     if s.get("fallback") and assets and not web:
         m = len(s["fallback"])

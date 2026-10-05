@@ -1,0 +1,68 @@
+<svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How the agent works: Claude writes the brief in a tool-use loop, then a gate in plain code checks every claim">
+  <style>
+    .af-t{font-family:var(--font);fill:#f4f7fb;font-weight:700;font-size:26px}
+    .af-s{font-family:var(--font);fill:#9aa6bb;font-size:18px}
+    .af-m{font-family:ui-monospace,"SF Mono",Menlo,monospace;fill:#dfe6f1;font-size:18px}
+    .af-k{font-family:var(--font);fill:#7dd3fc;font-size:15px;font-weight:700;letter-spacing:.16em}
+    .af-box{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.18);stroke-width:1.5}
+    .af-hot{fill:rgba(56,189,248,.08);stroke:#38bdf8;stroke-width:2}
+    .af-ok{fill:rgba(52,211,153,.08);stroke:#6ee7b7;stroke-width:2}
+    .af-bad{fill:rgba(244,63,94,.08);stroke:#fb7185;stroke-width:2}
+    .af-ln{stroke:#9aa6bb;stroke-width:2;fill:none}
+  </style>
+  <defs>
+    <marker id="af-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9aa6bb"/>
+    </marker>
+  </defs>
+
+  <text class="af-k" x="60" y="18">CLAUDE WRITES</text>
+
+  <rect class="af-box" x="60" y="32" width="500" height="88" rx="12"/>
+  <text class="af-t" x="84" y="70">182 pieces of feedback</text>
+  <text class="af-m" x="84" y="100">data/freshcart_feedback.csv</text>
+
+  <rect class="af-box" x="640" y="32" width="500" height="88" rx="12"/>
+  <text class="af-t" x="664" y="70">The contract + 3 step prompts</text>
+  <text class="af-m" x="664" y="100">system.md · cluster · ground · synthesize</text>
+
+  <line class="af-ln" x1="310" y1="120" x2="310" y2="162" marker-end="url(#af-arrow)"/>
+  <path class="af-ln" d="M890,120 V140 H600 V162" marker-end="url(#af-arrow)"/>
+
+  <rect class="af-hot" x="60" y="166" width="720" height="128" rx="12"/>
+  <text class="af-t" x="84" y="212">Claude, in a loop</text>
+  <text class="af-s" x="84" y="244">picks a tool → reads what comes back → goes again</text>
+  <text class="af-s" x="84" y="272">until it decides the brief is done</text>
+
+  <rect class="af-box" x="860" y="166" width="280" height="128" rx="12"/>
+  <text class="af-k" x="884" y="200">TWO TOOLS</text>
+  <text class="af-m" x="884" y="238">read_feedback(path)</text>
+  <text class="af-m" x="884" y="270">web_search(query)</text>
+
+  <line class="af-ln" x1="782" y1="214" x2="856" y2="214" marker-end="url(#af-arrow)"/>
+  <line class="af-ln" x1="856" y1="248" x2="782" y2="248" marker-end="url(#af-arrow)"/>
+
+  <line class="af-ln" x1="420" y1="294" x2="420" y2="330" marker-end="url(#af-arrow)"/>
+
+  <rect class="af-box" x="60" y="334" width="1080" height="88" rx="12"/>
+  <text class="af-m" x="84" y="372" style="font-weight:700;fill:#f4f7fb;font-size:22px">brief.json</text>
+  <text class="af-s" x="84" y="402">every claim carries its text, its source, and the exact sentence it came from</text>
+
+  <line x1="60" y1="452" x2="1140" y2="452" stroke="rgba(255,255,255,.14)" stroke-width="1.5" stroke-dasharray="6 8"/>
+  <text class="af-k" x="60" y="482">CODE CHECKS</text>
+
+  <line class="af-ln" x1="600" y1="422" x2="600" y2="494" marker-end="url(#af-arrow)"/>
+
+  <rect class="af-hot" x="60" y="498" width="1080" height="96" rx="12"/>
+  <text class="af-t" x="84" y="538">The gate · plain Python, no model</text>
+  <text class="af-s" x="84" y="572">Is the quoted sentence really in the cited source? Is every number in the claim in there too?</text>
+
+  <line class="af-ln" x1="320" y1="594" x2="320" y2="620" marker-end="url(#af-arrow)"/>
+  <line class="af-ln" x1="880" y1="594" x2="880" y2="620" marker-end="url(#af-arrow)"/>
+
+  <rect class="af-ok" x="60" y="624" width="520" height="64" rx="12"/>
+  <text class="af-t" x="84" y="665" style="fill:#6ee7b7;font-size:22px">✓ Pass → evidence pack, cleared to ship</text>
+
+  <rect class="af-bad" x="620" y="624" width="520" height="64" rx="12"/>
+  <text class="af-t" x="644" y="665" style="fill:#fb7185;font-size:22px">✗ Fail → blocked, with the reason</text>
+</svg>
