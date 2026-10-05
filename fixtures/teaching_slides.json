@@ -162,13 +162,13 @@
       "title": "Four steps, one chat",
       "body": "• Open claude.ai and start a new chat. It's free and there's nothing to install.\n• Copy the contract from the site and paste it as your first message.\n• Paste the sample brief, which has one fabricated number hiding in it. Claude should just say \"Got it.\"\n• Paste the verifier, then watch what your Claude does with each claim.",
       "qr": "Lost? Scan again",
-      "notes": "About seven minutes. Walk the room. Wifi dies: \"Screens down, everyone watch mine,\" Cmd+5 for your own claude.ai tab and run the three pastes."
+      "notes": "About seven minutes. Walk the room. Box 2 should get a one-line \"Got it.\"; if someone's Claude rewrites the brief, \"just hold it as written.\" Wifi dies: \"Screens down, everyone watch mine,\" Cmd+5 for your own claude.ai tab and run the three pastes."
     },
     {
       "section": "03 · Your turn",
       "title": "Hands up if your Claude caught the 62%.",
       "body": "Most of this room got the same answer: every claim NOT FOUND, the true 41% included.\nA chat that can't open the source can't tell the real number from the fake one. The check that decides has to hold the source, and that's code.",
-      "notes": "Hands up if it caught the 62%, and only that one. Then hands up if it failed everything (expect most hands). \"That's Claude being honest: it couldn't open the report, so it refused to vouch for anything. But it failed the true 41% too. Without the source, a chat can't tell real from fake.\" If yours passed something or quoted a sentence it found, look closer: it matched a different page or made it up. The gate holds the source, so it caught the 62 and passed the 41. Sixty lines of code, not a second AI."
+      "notes": "Hands up if it caught the 62%, and only that one. Then hands up if it failed everything (expect most hands). \"That's Claude being honest: it couldn't open the report, so it refused to vouch for anything. But it failed the true 41% too. Without the source, a chat can't tell real from fake.\" If yours passed something or quoted a sentence it found, look closer: it matched a different page or made it up. The gate holds the source, so it caught the 62 and passed the 41. Sixty lines of code, not a second AI. Quote cut short? Claude.ai keeps web quotes to about fifteen words; the gate needs the whole sentence, from a copy it holds."
     },
     {
       "section": "Tonight",
