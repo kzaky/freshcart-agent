@@ -1,0 +1,16 @@
+# What Claude Code wrote from LIVE_GATE_PROMPT.md · rehearsal capture, Oct 4 · 30 seconds
+# freshcart_agent/gate.py · check_claim(), the web-claim half
+
+    src = fetch_source(claim["source"])
+    if src is None:
+        res.reasons.append("source not found")
+        return res
+    text = src["text"]
+
+    if _normalize(claim["quote"]) not in _normalize(text):
+        res.reasons.append("quoted sentence not found in source")
+    missing = [t for t in re.findall(r"\d[\d,]*(?:\.\d+)?%?", claim["text"]) if t not in text]
+    for tok in missing:
+        res.reasons.append(f'token "{tok}" not found in source')
+
+# Claude Code's run-to-run wording differs a little; the verdict doesn't.

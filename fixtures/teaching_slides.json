@@ -11,8 +11,8 @@
     {
       "section": "Opening",
       "title": "I'm Khaled.",
-      "body": "I lead AI Governance and Evaluations Platform Engineering at RBC Borealis.\nBefore that, I built and led the bank's agentic AI platform. Before that, I shipped passkeys and MFA for AWS sign-in.\nI think governance belongs inside the system from day one. Tonight you'll watch me build it in.",
-      "notes": "Under a minute. RBC Borealis, the agentic platform, passkeys and MFA at AWS, and you teach PM and AI here at BrainStation. Land it on: governance belongs inside the system from day one, and tonight you'll watch me build it in."
+      "body": "Senior Director, AI Model & Agent Evaluation Platform at RBC, and interim head of AI Governance and Evaluations Platform.\nBefore that, I built and led the bank's agentic AI platform. Before that, I shipped passkeys and MFA for AWS sign-in.\nI think governance belongs inside the system from day one. Tonight you'll watch me build it in.",
+      "notes": "Under a minute. Senior Director of the AI Model & Agent Evaluation Platform at RBC and interim head of AI Governance and Evals Platform, the agentic platform, passkeys and MFA at AWS, and you teach PM and AI here at BrainStation. Land it on: governance belongs inside the system from day one, and tonight you'll watch me build it in."
     },
     {
       "section": "Opening",
@@ -44,7 +44,7 @@
       "title": "One level down: the loop",
       "body": "About 40 lines in freshcart_agent/agent.py. Tonight it replays a run I set up, so it runs the same way every time. The check you'll watch me build runs for real.",
       "term": "snippets/agent_loop.txt",
-      "notes": "Twenty seconds. Point, don't read. \"One level down, this is the loop. Send Claude the contract, the two tools and the conversation so far. If it asks for a tool, run it and hand the result back. If it doesn't, it's done. About forty lines. Tonight it replays a run I set up, so it runs the same way every time and the venue wifi can't break it. The check runs for real, and you'll watch me build it.\" Then →."
+      "notes": "Twenty seconds. Point, don't read. \"One level down, this is the loop. Send Claude the contract, the two tools and the conversation so far. If it asks for a tool, run it and hand the result back. If it doesn't, it's done. About forty lines. The listing promised you the unedited mechanics, and this is them, all on GitHub. Tonight the run itself is a replay I set up, so it's the same every time and the venue wifi can't break it. The piece I build live with Claude Code is the one that matters most: the check.\" Then →."
     },
     {
       "section": "01 · Watch it build",
@@ -52,7 +52,7 @@
       "body": "Every claim names its source and the exact sentence behind it. All of it is on GitHub: github.com/kzaky/freshcart-agent",
       "term": "snippets/contract.txt",
       "qr": "The repo, every prompt, and the no-code track",
-      "notes": "Twenty seconds. \"And this is what makes it checkable. The contract says every web claim records the exact sentence it came from, and that sentence will be checked. So every claim comes out like this: the claim, the source, the quote. Hold on to that quote field; it's what we check in part two. All of it is on GitHub: the agent, the prompts, the gate, and the prompt I gave Claude Code to start it. The QR gets you there, and I'll show it again at the end.\" Then → to LIVE."
+      "notes": "Twenty seconds. \"And this is what makes it checkable. The contract says every web claim records the exact sentence it came from, and that sentence will be checked. So every claim comes out like this: the claim, the source, the quote. Hold on to that quote field; it's what we check in part two. All of it is on GitHub: the agent, the prompts, the gate, and the prompt I gave Claude Code to start it. Every commit in that repo was made with Claude Code, and the history says so. The QR gets you there, and I'll show it again at the end.\" Then → to LIVE."
     },
     {
       "live": true,
@@ -96,6 +96,10 @@
       "body": "Claude Code writes the check, then we run it.",
       "fallback": [
         {
+          "title": "What Claude Code wrote (rehearsal capture)",
+          "term": "backup/claude_code_gate.txt"
+        },
+        {
           "title": "make gate, first run",
           "term": "backup/gate_red.txt"
         },
@@ -104,7 +108,7 @@
           "frame": "backup/brief_flagged.html"
         }
       ],
-      "notes": "Ctrl+→, tab 2, Cmd+V the prompt (on the clipboard from pre-flight), Enter. Keep talking: \"I described what I want checked in English, and it's writing the code.\" If it offers to run the gate, say no. Stall past 90s: tab 1, \\cp ../freshcart_agent/gate.py freshcart_agent/gate.py. Tab 1, make gate. Pass, pass, pass. Hold the RED four seconds. Ctrl+←, then →. Dead? ↓ RED run, ↓ flagged brief."
+      "notes": "Ctrl+→, tab 2, Cmd+V the prompt (on the clipboard from pre-flight), Enter. Keep talking: \"I described what I want checked in English, and it's writing the code.\" If it offers to run the gate, say no. Stall past 90s: tab 1, \\cp ../freshcart_agent/gate.py freshcart_agent/gate.py. Tab 1, make gate. Pass, pass, pass. Hold the RED four seconds. Ctrl+←, then →. Dead? ↓ what Claude Code wrote in rehearsal, ↓ RED run, ↓ flagged brief."
     },
     {
       "section": "02 · Catch it",
@@ -156,15 +160,15 @@
     {
       "section": "03 · Your turn",
       "title": "Four steps, one chat",
-      "body": "• Open claude.ai and start a new chat. It's free and there's nothing to install.\n• Copy the contract from the site and paste it as your first message.\n• Paste the sample brief, which has one fabricated number hiding in it.\n• Paste the verifier, then watch what your Claude does with each claim.",
+      "body": "• Open claude.ai and start a new chat. It's free and there's nothing to install.\n• Copy the contract from the site and paste it as your first message.\n• Paste the sample brief, which has one fabricated number hiding in it. Claude should just say \"Got it.\"\n• Paste the verifier, then watch what your Claude does with each claim.",
       "qr": "Lost? Scan again",
       "notes": "About seven minutes. Walk the room. Wifi dies: \"Screens down, everyone watch mine,\" Cmd+5 for your own claude.ai tab and run the three pastes."
     },
     {
       "section": "03 · Your turn",
-      "title": "Hands up if your Claude passed everything.",
-      "body": "Same prompt and same brief, and this room got three verdicts: caught it, couldn't reach the source, or made a sentence up.\nA chat can't hold the source, so the check that decides has to be code that does.",
-      "notes": "Hands up if it passed everything. Then hands up if it failed everything. Three verdicts from one prompt: caught it, couldn't reach the source, or made a sentence up. A chat can't hold the source, so the check that decides is code, about sixty lines of Python and not a second AI."
+      "title": "Hands up if your Claude caught the 62%.",
+      "body": "Most of this room got the same answer: every claim NOT FOUND, the true 41% included.\nA chat that can't open the source can't tell the real number from the fake one. The check that decides has to hold the source, and that's code.",
+      "notes": "Hands up if it caught the 62%, and only that one. Then hands up if it failed everything (expect most hands). \"That's Claude being honest: it couldn't open the report, so it refused to vouch for anything. But it failed the true 41% too. Without the source, a chat can't tell real from fake.\" If yours passed something or quoted a sentence it found, look closer: it matched a different page or made it up. The gate holds the source, so it caught the 62 and passed the 41. Sixty lines of code, not a second AI."
     },
     {
       "section": "Tonight",
