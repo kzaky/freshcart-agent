@@ -82,7 +82,7 @@ def write_brief_html(brief: dict, usage: dict, path: Path = OUT / "brief.html", 
     opts = "".join(f"<li><strong>{html.escape(o['name'])}.</strong> {html.escape(o['note'])}</li>" for o in brief["options"])
     doc = f"""<!doctype html><meta charset="utf-8"><title>{html.escape(brief['title'])}</title><style>{CSS}</style>
 <h1>{html.escape(brief['title'])}</h1>
-<div class="meta">Product brief · generated in {usage['elapsed_s']:.0f}s · est. cost ${usage['est_cost_usd']:.2f}</div>
+<div class="meta">Product brief · est. {usage['elapsed_s']:.0f}s · est. cost ${usage['est_cost_usd']:.2f}</div>
 <div class="rec"><strong>Recommendation.</strong> {html.escape(brief['recommendation'])}</div>
 <h2>Problem</h2><p>{html.escape(brief['problem'])}</p>
 <h2>Evidence</h2><ul>{''.join(ev)}</ul>

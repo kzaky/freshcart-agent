@@ -1,0 +1,13 @@
+# freshcart_agent/agent.py · the loop, simplified (about 40 lines in full)
+
+system = open("prompts/system.md").read()   # the contract: no source, no claim
+tools  = [read_feedback, web_search]        # read the file, search the web
+
+while True:
+    reply = claude.messages.create(system=system, tools=tools, messages=msgs)
+    if reply.stop_reason != "tool_use":
+        break                               # Claude says the brief is done
+    for call in tool_calls(reply):
+        msgs.append(run(call))              # run the tool, hand back the result
+
+brief = json.loads(reply.text)              # problem, evidence, options, ask

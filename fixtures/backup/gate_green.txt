@@ -18,9 +18,9 @@
 ╭──────────────────────────────────── Operator metrics ────────────────────────────────────╮
 │                                                                                          │
 │    Groundedness     3 of 4 on first run · 1 caught and removed · 3 of 3 now              │
-│    Completion       all 5 brief sections present                                         │
-│    Cost per run     $0.11                                                                │
-│    Latency          19.0s                                                                │
+│    Completion       5 of 5 brief sections present                                        │
+│    Cost per run     ~$0.08 (est.)                                                        │
+│    Latency          ~19s (est.)                                                          │
 │                                                                                          │
 ╰──────────────────────────────────────────────────────────────────────────────────────────╯
 

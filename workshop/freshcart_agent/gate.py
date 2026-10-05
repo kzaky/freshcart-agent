@@ -36,7 +36,8 @@ def check_claim(claim: dict) -> Result:
 def run_gate(brief: dict) -> list[Result]:
     return [check_claim(c) for c in brief["claims"]]
 
-def metrics(results: list[Result], usage: dict) -> dict:
+def metrics(results: list[Result], usage: dict, brief: dict) -> dict:
     total = len(results); passed = sum(r.passed for r in results)
-    return {"groundedness": f"{passed} of {total} claims supported", "completion": "all 5 brief sections present",
-            "cost_per_run": f"${usage['est_cost_usd']:.2f}", "latency": f"{usage['elapsed_s']:.1f}s"}
+    present = sum(bool(brief.get(k)) for k in ("problem", "claims", "options", "recommendation", "ask"))
+    return {"groundedness": f"{passed} of {total} claims supported", "completion": f"{present} of 5 brief sections present",
+            "cost_per_run": f"~${usage['est_cost_usd']:.2f} (est.)", "latency": f"~{usage['elapsed_s']:.0f}s (est.)"}

@@ -1,11 +1,11 @@
 {
   "_note": "ENGINEERED FIXTURE. The failing 62% churn claim is a realistic citation failure deliberately authored to demonstrate the verification gate catching it \u2014 it is NOT a live model drift. Honest stage narrative: 'I engineered a realistic failure.' Replayed byte-for-byte in DEMO_MODE. `make stage` accepts provenance 'engineered' or 'live'.",
   "captured_at": "2026-09-08",
-  "model": "claude-sonnet-4-6",
+  "model": null,
   "usage": {
     "input_tokens": 14208,
     "output_tokens": 2640,
-    "est_cost_usd": 0.11,
+    "est_cost_usd": 0.08,
     "elapsed_s": 19.0
   },
   "phases": {
@@ -74,7 +74,7 @@
         },
         {
           "query": "instafresh substitution approval feature",
-          "hits": 2
+          "hits": 3
         }
       ]
     },

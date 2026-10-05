@@ -1,5 +1,5 @@
 ╔══════════════════════════════════════════════════════════════════════════════════════════╗
-║  FRESHCART ANALYST  agent run  ·  DEMO MODE (offline)                                    ║
+║  FRESHCART ANALYST  agent run  ·  REPLAY (offline)                                       ║
 ╚══════════════════════════════════════════════════════════════════════════════════════════╝
 
 ▶ READING FEEDBACK
@@ -28,4 +28,4 @@
 
 ▶ DRAFTING BRIEF
   ✓ brief drafted in 4.2s
-  tokens 14,208 in · 2,640 out   est. cost $0.11   elapsed 19.0s
+  tokens 14,208 in · 2,640 out   est. cost $0.08   est. time 19.0s

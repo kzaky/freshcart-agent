@@ -24,7 +24,7 @@ def cmd_gate():
     results = run_gate(brief)
     R.print_gate(results)
     R.verdict(results)
-    m = metrics(results, usage)
+    m = metrics(results, usage, brief)
     first = OUT / "gate_first_run.json"
     if all(r.passed for r in results):
         if first.exists():

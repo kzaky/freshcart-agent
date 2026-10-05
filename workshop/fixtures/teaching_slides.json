@@ -33,10 +33,17 @@
       "notes": "Parsley, cilantro, customers hate it. Ninety days of complaints and a decision. \"Normally somebody spends half a day reading this. Let's watch a machine do it.\" Then → to LIVE."
     },
     {
+      "section": "01 · Watch it build",
+      "title": "I built this agent with Claude Code.",
+      "body": "Claude in a loop, two tools and one contract. About 40 lines of Python.\nTonight it replays a run I set up, so it fails the same way every time. The check you'll watch me build runs for real.",
+      "term": "snippets/agent_loop.txt",
+      "notes": "Fifteen seconds. Don't read the code. \"I built this agent before tonight, with Claude Code. It's Claude in a loop with two tools, read the file and search the web, plus a contract: no source, no claim. Tonight it replays a run I set up, so it fails the same way every time. The part that runs for real is the check, and you'll watch me build that live. The code and every prompt are in the repo.\" Then → to LIVE."
+    },
+    {
       "live": true,
       "section": "01 · Watch it build",
       "title": "make demo",
-      "body": "The agent reads 182 complaints and writes the brief.",
+      "body": "The agent reads 182 pieces of feedback and writes the brief. A replay: the same run every time.",
       "fallback": [
         {
           "title": "make demo",
@@ -47,7 +54,7 @@
           "frame": "backup/brief_clean.html"
         }
       ],
-      "notes": "Ctrl+→, tab 1, make demo. It prints in about six seconds: let it finish, scroll up, walk the phases (182 complaints, the themes, it chose to search, the brief). \"The run I captured for tonight took nineteen seconds and cost eleven cents.\" Ctrl+←, Cmd+2, scroll the brief, don't point at 62%. Bait: \"You could have pasted this into a chatbot. You're right.\" Cmd+1, then →. Dead? ↓ output, ↓ brief."
+      "notes": "Ctrl+→, tab 1, make demo. It prints in about six seconds: let it finish, scroll up, walk the phases (182 pieces of feedback, the four themes, the two searches, the brief). The banner says REPLAY; own it. \"A run like this costs about eight cents and takes about twenty seconds.\" Ctrl+←, Cmd+2, scroll the brief, don't point at 62%. Bait: \"You could have pasted this into a chatbot. You're right.\" Cmd+1, then →. Dead? ↓ output, ↓ brief."
     },
     {
       "section": "01 · Find the lie",
@@ -116,7 +123,7 @@
           "frame": "backup/evidence_pack.html"
         }
       ],
-      "notes": "Ctrl+→, tab 1, make fix, then make gate. GREEN. \"Same agent. Now it's earned the decision.\" Ctrl+←, Cmd+3, Cmd+R: the evidence pack. \"It left a receipt, and that receipt is what separates a weekend project from something a bank will run.\" Cmd+1, then →. Dead? ↓ GREEN, ↓ evidence pack."
+      "notes": "Ctrl+→, tab 1, make fix, then make gate. GREEN. \"Same agent. Now it's earned the decision.\" \"The gate, and the prompt I just pasted, are in the repo's workshop folder.\" Ctrl+←, Cmd+3, Cmd+R: the evidence pack. \"It left a receipt, and that receipt is what separates a weekend project from something a bank will run.\" Cmd+1, then →. Dead? ↓ GREEN, ↓ evidence pack."
     },
     {
       "section": "Tonight",
@@ -160,14 +167,14 @@
         },
         {
           "label": "Engineering lead",
-          "text": "It's a test on every commit. A prompt tweak that drops groundedness fails the build before anyone sees it."
+          "text": "Run it as a test on every commit. A prompt tweak that drops groundedness fails the build before anyone sees it."
         },
         {
           "label": "Executive",
           "text": "You can sign without re-reading every number, because you're trusting a check you can audit."
         }
       ],
-      "notes": "Sixty seconds each at most. PM: the evidence pack keeps your brief alive in review. Eng lead: it's a test on every commit. Exec: you sign a check you can audit, not an AI you have to trust."
+      "notes": "Sixty seconds each at most. PM: the evidence pack keeps your brief alive in review. Eng lead: run it as a test on every commit. Exec: you sign a check you can audit, not an AI you have to trust."
     },
     {
       "section": "04 · What to keep",
@@ -191,8 +198,8 @@
     {
       "section": "04 · What to keep",
       "title": "The four numbers you already saw",
-      "body": "• Groundedness: 3 of 4 on the first run, 3 of 3 after the fix\n• Completion: all 5 brief sections present\n• Cost: $0.11 for the captured run\n• Latency: 19 seconds for the captured run",
-      "notes": "Thirty seconds. Point, don't re-explain: they were on screen when the gate passed. Groundedness is the one almost nobody tracks, and the one that ends careers."
+      "body": "• Groundedness: 3 of 4 on the first run, 3 of 3 after the fix\n• Completion: 5 of 5 brief sections present\n• Cost: about 8 cents a run (estimated)\n• Latency: about 19 seconds a run (estimated)",
+      "notes": "Thirty seconds. Point, don't re-explain: they were on screen when the gate passed. Groundedness is the one almost nobody tracks, and the one that ends careers. Cost and latency are estimates for a run like this; tonight's was a replay."
     },
     {
       "section": "04 · What to keep",
@@ -274,21 +281,21 @@
       "cols": [
         {
           "label": "No-code track",
-          "text": "claude.ai and seven copy-paste prompts. No install and no API key."
+          "text": "claude.ai and seven copy-paste prompts, in order. Save them as a Claude Project or skill to reuse. No install, no API key. You do the checking."
         },
         {
           "label": "Builder track",
-          "text": "The full repo and Claude Code, including the gate I built tonight."
+          "text": "Claude Code and the repo at github.com/kzaky/freshcart-agent: the agent, the gate, and the prompt I started it from."
         }
       ],
       "qr": "Both tracks, every prompt",
-      "notes": "Thirty seconds. Say it out loud: the no-code track needs no install and no API key, so everyone here can rebuild it."
+      "notes": "Thirty seconds. No-code: claude.ai and seven prompts, no install, no API key; save them as a Project or skill. In a chat, you're the checker. Builder: say the URL out loud, \"github dot com slash kzaky slash freshcart-agent. The prompt I gave Claude Code to start this agent is in there too.\""
     },
     {
       "section": "04 · What to keep",
       "title": "These slides came from the same generator as the FreshCart deck.",
-      "body": "Same code. I didn't make an exception for myself.\nThe agent read 182 complaints, found the real problem, went and got evidence, wrote the recommendation, built a deck and left a receipt for every claim. The captured run took 19 seconds and cost 11 cents.",
-      "notes": "\"The slides I taught with tonight came out of the same generator that turned the approved brief into a leadership deck. Same code.\" Press ↓ to show that deck for five seconds, ↑ to hide it. Then the captured run: 182 complaints, 19 seconds, 11 cents.",
+      "body": "Same code. I didn't make an exception for myself.\nThe agent read 182 pieces of feedback, ranked the problems, pulled the evidence, wrote the recommendation, built a deck and left a receipt for every claim. A run like that costs about 8 cents.",
+      "notes": "\"The slides I taught with tonight came out of the same generator that turned the approved brief into a leadership deck. Same code.\" Press ↓ to show that deck for five seconds, ↑ to hide it. Then the recap: 182 pieces of feedback, about eight cents a run.",
       "fallback": [
         {
           "title": "The leadership deck, from the same generator",
@@ -308,13 +315,13 @@
       "title": "Questions",
       "body": "The checklist and the evals map are both linked from the site.",
       "qr": "Everything from tonight",
-      "notes": "Hard stop at 7:20. Leave the QR up. Likely questions: isn't the checker just another AI, isn't this rigged (you planted it and said so; the captured run is in the repo), what else would you run in production, I can't code."
+      "notes": "Hard stop at 7:20. Leave the QR up. Likely questions: isn't the checker just another AI, isn't this rigged (you planted it and said so; the replay file in the repo says it's engineered), what else would you run in production, I can't code."
     }
   ],
   "map": [
     {
       "label": "Watch it build",
-      "desc": "An agent turns 182 complaints into a decision brief",
+      "desc": "An agent turns 182 pieces of feedback into a decision brief",
       "tag": "live"
     },
     {

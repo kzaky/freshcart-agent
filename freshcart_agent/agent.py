@@ -1,6 +1,7 @@
 """The agent loop.
 
-DEMO_MODE (default): replay one genuine captured run, byte for byte, with realistic pacing.
+DEMO_MODE (default): replay one engineered run (fixtures/captured_run.json) with stage pacing.
+Timings, tokens and cost in the replay are estimates for a run like this, not measurements.
 LIVE mode: a real Anthropic tool-use loop. Same tools, same contract. Needs ANTHROPIC_API_KEY.
 """
 import json, os, time
@@ -23,7 +24,7 @@ def _pace(seconds: float):
 def run_demo() -> tuple[dict, dict]:
     cap = json.load(open(CAPTURED, encoding="utf-8"))
     ph, usage = cap["phases"], cap["usage"]
-    R.banner("FRESHCART ANALYST", "agent run  ·  DEMO MODE (offline)")
+    R.banner("FRESHCART ANALYST", "agent run  ·  REPLAY (offline)")
 
     R.step("READING FEEDBACK")
     fb = read_feedback("data/freshcart_feedback.csv")
@@ -48,7 +49,7 @@ def run_demo() -> tuple[dict, dict]:
     R.step("DRAFTING BRIEF")
     R.spinner("writing...", 1.6)
     R.done(f"brief drafted in {ph['draft']['elapsed_s']}s")
-    R.line(f"tokens {usage['input_tokens']:,} in · {usage['output_tokens']:,} out   est. cost ${usage['est_cost_usd']:.2f}   elapsed {usage['elapsed_s']}s", "dim")
+    R.line(f"tokens {usage['input_tokens']:,} in · {usage['output_tokens']:,} out   est. cost ${usage['est_cost_usd']:.2f}   est. time {usage['elapsed_s']}s", "dim")
     R.console.print()
     R.print_brief(cap["brief"])
     path = R.write_brief_html(cap["brief"], usage)

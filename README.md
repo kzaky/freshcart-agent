@@ -17,11 +17,13 @@ make gate          # PASSES. Evidence pack written. Operator metrics shown.
 make deck          # approved brief → 5-slide deck
 ```
 
+Built with Claude Code. [`BUILD_PROMPT.md`](BUILD_PROMPT.md) is the prompt I started from, with notes on where the build ended up different.
+
 Rendered artifacts land in `out/`: `brief.html`, `evidence_pack.html`, `deck.html`. Open them in a browser for the audience. The terminal shows the process, and the browser shows what a human would actually read.
 
 ## Why it is deterministic
 
-`DEMO_MODE=1` (default) replays one captured agent run from `fixtures/captured_run.json`, byte for byte, with no network. The gate then runs for real against it.
+`DEMO_MODE=1` (default) replays one engineered agent run from `fixtures/captured_run.json`, the same every time, with no network. The gate then runs for real against it. In the replay, the theme table comes from the fixture (its counts match the CSV's labelled `theme_truth` column), and the timings, tokens and cost are estimates for a run like this, not measurements. In live mode, Claude does the clustering and searching itself.
 
 Provenance matters here. This build ships an **engineered** fixture: I deliberately authored the failing 62% churn claim as a realistic citation drift to demonstrate the gate, so it didn't come from a live model run. `provenance.kind = "engineered"`, and the honest stage line is *"I engineered a realistic failure."* `make stage` accepts `engineered` or `live`, and still refuses a raw unreviewed `authored` placeholder. The gate always runs for real against the replayed brief.
 
@@ -33,7 +35,7 @@ Why engineered instead of live: as shipped, `make capture` can't produce a genui
 
 ## Why the trap fires
 
-`fixtures/search_cache.json` contains one authoritative-looking report (Provision Retail Analytics 2025) whose only substitution figure is a 41% reduced-order-frequency stat. It contains no churn figure, no "62", and never names FreshCart. The grounding prompt asks for a churn number. With only an adjacent figure available, the model synthesized "62% of FreshCart users churn" and cited the report with an invented supporting sentence. Three real errors at once: number inflation, concept drift, false specificity.
+`fixtures/search_cache.json` contains one authoritative-looking report (Provision Retail Analytics 2025) whose only substitution figure is a 41% reduced-order-frequency stat. It contains no churn figure, no "62", and never names FreshCart. The grounding prompt asks for a churn number. With only an adjacent figure available, this is the drift a model makes: "62% of FreshCart users churn," cited to the report with an invented supporting sentence. In this build I wrote that claim by hand to show the drift (see provenance above). Three real errors at once: number inflation, concept drift, false specificity.
 
 ## Why the gate catches it honestly
 
@@ -51,9 +53,18 @@ I've written up the full map at [khaledzaky.com/trust/evals](https://khaledzaky.
 
 ```
 freshcart_agent/   agent.py (loop)  tools.py (2 tools)  gate.py (the check)  render.py  deck.py
-prompts/           system contract + 4 step prompts
+prompts/           system contract + 3 step prompts the live loop sends (04_deck.md is reference; the shipped deck is templated)
 data/              freshcart_feedback.csv, 182 synthetic rows
 fixtures/          search_cache.json (offline corpus, trap host)  captured_run.json (the replayed run)
-workshop/          same repo with gate.py stubbed to a TODO. For rebuilding at home.
+workshop/          same repo with gate.py stubbed to a TODO, plus LIVE_GATE_PROMPT.md. For rebuilding at home.
 out/               rendered artifacts
 ```
+
+## Rebuild it yourself
+
+- **Builder track:** clone this repo, open Claude Code in `workshop/`, and paste [`workshop/LIVE_GATE_PROMPT.md`](workshop/LIVE_GATE_PROMPT.md). That's the prompt I use on stage to build the gate. `make demo`, then `make gate`. To build an agent like this from scratch, start from [`BUILD_PROMPT.md`](BUILD_PROMPT.md).
+- **No-code track:** [khaledzaky.com/trust](https://khaledzaky.com/trust) has the same steps as copy-paste prompts for claude.ai. You can save them as a Claude Project or skill. In a chat, you do the checking. The check that decides belongs in code.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
