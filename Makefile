@@ -1,4 +1,4 @@
-.PHONY: demo gate fix deck teach preflight capture stage clean all site-slides
+.PHONY: demo gate fix deck teach preflight capture stage clean all site-slides reset
 export DEMO_MODE ?= 1
 # Use the project venv when present so `make` works without activating it first.
 PY ?= $(if $(VIRTUAL_ENV),python3,$(if $(wildcard .venv/bin/python),.venv/bin/python,python3))
@@ -11,6 +11,8 @@ capture:   ; DEMO_MODE=0 $(PY) -m freshcart_agent capture
 stage:     ; STAGE=1 $(PY) -m freshcart_agent preflight
 preflight: ; $(PY) -m freshcart_agent preflight
 clean:     ; rm -rf out/*
+# The show runs from workshop/; this resets that copy from here too (discards edits to workshop/freshcart_agent/gate.py).
+reset:     ; $(MAKE) -C workshop reset
 all: clean demo ; -$(MAKE) gate ; $(MAKE) fix ; $(MAKE) gate ; $(MAKE) deck
 
 # Publish the teaching slides to the website (same renderer; live slides and fallbacks left out).
